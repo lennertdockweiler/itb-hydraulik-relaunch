@@ -187,3 +187,35 @@
 .actionbar .actionbar__call, .actionbar .actionbar__call:hover { color: var(--bar-text); }
 .actionbar .actionbar__ask, .actionbar .actionbar__ask:hover { color: var(--bar-on-accent); }
 :where(.pp-cta .person__photo) { background: var(--kit-panel-text); color: var(--kit-panel); }
+
+/* Häufige Fragen auf Produktseiten */
+:where(.pp-faq__item) { border-bottom: 1px solid var(--kit-line); }
+:where(.pp-faq__item:first-of-type) { border-top: 1px solid var(--kit-line); }
+:where(.pp-faq__item summary) { cursor: pointer; padding: 1rem 2rem 1rem 0; font-weight: 600; list-style: none; position: relative; }
+:where(.pp-faq__item summary)::-webkit-details-marker { display: none; }
+:where(.pp-faq__item summary)::after { content: "+"; position: absolute; right: 0.25rem; top: 0.85rem; font-size: 1.25rem; line-height: 1; color: var(--kit-accent); }
+:where(.pp-faq__item[open] summary)::after { content: "−"; }
+:where(.pp-faq__item p) { margin: 0 0 1.1rem; max-width: 68ch; }
+
+/* Druckansicht: Produktseiten als sauberes Datenblatt */
+@media print {
+  .skip-link, .actionbar, .site-header nav, [data-nav-toggle], .pp-actions, .pp-doc__get, .pp-related, .footer-products, .kit, form { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  .site-header, .site-header *, footer, footer * { background: #fff !important; color: #000 !important; box-shadow: none !important; }
+  .site-header { position: static !important; border-bottom: 1px solid #999 !important; }
+  .pp, .pp * { color: #000 !important; background: transparent !important; box-shadow: none !important; }
+  .pp-table th, .pp-table td { border: 1px solid #999 !important; }
+  .pp-faq__item { break-inside: avoid; }
+  .pp-faq__item p { display: block !important; }
+  .pp-section, .pp-table, .pp-cards li { break-inside: avoid; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.8em; }
+}
+
+/* Lange deutsche Komposita („Plattenwärmetauscher“) auf schmalen Displays sauber trennen */
+:where(h1, h2, h3, dt, legend) { overflow-wrap: break-word; }
+@media (max-width: 30em) {
+  :where(h1, h2, h3, dt, legend) { hyphens: auto; -webkit-hyphens: auto; }
+}
+
+/* Rechtstexte: lange Wörter wie „Auftragsverarbeitungsvertrag“ umbrechen */
+:where(.legal) { hyphens: auto; overflow-wrap: break-word; }

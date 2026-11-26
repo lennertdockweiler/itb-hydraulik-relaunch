@@ -25,6 +25,18 @@ SRC = ROOT / "src"
 SHARED = SRC / "shared"
 OUT = ROOT / "docs"
 DOMAIN = "https://itb-hydraulik.com"
+# Social-Vorschaubild (WhatsApp, Mail, LinkedIn) braucht eine absolute, erreichbare URL.
+# Solange die Entwürfe auf GitHub Pages liegen, zeigt sie dorthin; nach dem Go-live auf DOMAIN umstellen.
+OG_BASE = "https://lennertdockweiler.github.io/itb-hydraulik-relaunch/{variant}"  # [[ERSETZEN beim Go-live: DOMAIN]]
+
+
+def og_image_tags(variant: str) -> str:
+    url = OG_BASE.format(variant=variant) + "/assets/og.jpg"
+    return (f'<meta property="og:image" content="{url}">\n'
+            '<meta property="og:image:width" content="1200">\n'
+            '<meta property="og:image:height" content="630">\n'
+            '<meta property="og:image:alt" content="ITB Industrie Technik Briechle, Radolfzell – Hydraulikaggregat">\n'
+            '<meta name="twitter:card" content="summary_large_image">')
 
 VARIANTS = ["v1-datenblatt", "v2-kreislauf", "v3-editorial", "v4-werkhalle", "v5-baukasten"]
 
@@ -122,12 +134,86 @@ def legal_page(file: str, head: str, header: str, footer: str, theme: str, body_
 def esc(text: str) -> str:
     return text.replace("&", "&amp;").replace("<", "&lt;").replace('"', "&quot;")
 
+# Häufige Fragen je Produktseite: sichtbar als <details> und als FAQPage-JSON-LD.
+FAQ = {
+    "plattenwaermetauscher.html": [
+        ("Welche Angaben brauchen Sie für die Auslegung eines Plattenwärmetauschers?",
+         "Die beiden Medien (z. B. Hydrauliköl und Kühlwasser), deren Volumenströme, Ein- und Austrittstemperaturen oder die abzuführende Leistung in kW, den zulässigen Druckverlust und den Betriebsdruck. Fehlt etwas, schätzen wir es mit Ihnen gemeinsam ab."),
+        ("Gelöteter oder gedichteter Plattenwärmetauscher – was ist der Unterschied?",
+         "Gelötete Plattenwärmetauscher kommen ohne Dichtungen aus. Sie sind deshalb sehr kompakt, druck- und temperaturfest und wartungsarm. Gedichtete Geräte lassen sich zerlegen und mechanisch reinigen, sind aber größer. Für Öl- und Wasserkreisläufe im Maschinenbau ist die gelötete Bauform meist die wirtschaftlichere Wahl."),
+        ("Kann man einen gelöteten Plattenwärmetauscher reinigen?",
+         "Ja, durch Spülen mit einem geeigneten Reinigungsmittel, idealerweise entgegen der normalen Strömungsrichtung. Ein vorgeschalteter Filter verhindert, dass sich die engen Kanäle überhaupt erst zusetzen."),
+        ("Welchen Plattenwärmetauscher brauche ich für ein Schwimmbad?",
+         "Für chloridhaltiges Beckenwasser bieten wir den Typ XCR an. Er ist nickelgelötet und aus dem Edelstahl 1.4547 (SMO 254) gefertigt, der deutlich korrosionsbeständiger ist als Standard-Edelstahl."),
+    ],
+    "waermetauscher-kuehler.html": [
+        ("Luftkühler oder wassergekühlter Wärmetauscher – was ist besser?",
+         "Ein Luft-Ölkühler braucht kein Kühlwasser, aber Platz und einen freien Luftstrom. Seine Leistung hängt von der Umgebungstemperatur ab. Ein wassergekühlter Wärmetauscher ist kompakter und leistungsstärker, setzt aber einen Kühlwasserkreis voraus. Ist Kühlwasser vorhanden, ist er meist die erste Wahl."),
+        ("Wann ist ein Rohrbündel-Wärmetauscher sinnvoll?",
+         "Bei verschmutzten Medien, sehr großen Volumenströmen oder Seewasser. Die Rohre lassen sich mechanisch reinigen. Für Schiffe gibt es Marine-Ausführungen aus seewasserbeständigen Werkstoffen."),
+        ("Woran merke ich, dass meine Anlage einen Ölkühler braucht?",
+         "Steigt die Öltemperatur im Betrieb dauerhaft deutlich über den Bereich, den der Öl- und Komponentenhersteller empfiehlt, altert das Öl schneller und Dichtungen leiden. Ein typisches Zeichen ist, dass die Maschine nach längerer Laufzeit träger oder lauter wird. Wir berechnen, welche Kühlleistung nötig ist."),
+    ],
+    "hydraulikaggregate.html": [
+        ("Bauen Sie auch einzelne Hydraulikaggregate?",
+         "Ja. Durch unseren Baukasten lohnt sich auch ein Einzelstück – genauso wie eine Serie."),
+        ("Welche Angaben brauchen Sie für ein Angebot?",
+         "Benötigter Druck und Fördermenge, wie lange und wie oft das Aggregat läuft, Ihre Stromversorgung, den verfügbaren Einbauraum und welche Bewegungen gesteuert werden sollen. Ein vorhandener Schaltplan hilft – ist aber keine Voraussetzung."),
+        ("Kann ich ein vorhandenes Aggregat nachbauen oder ersetzen lassen?",
+         "In vielen Fällen ja. Schicken Sie uns Fotos vom Typenschild und vom Aggregat, wenn möglich auch den Schaltplan. Wir prüfen, ob ein Nachbau oder eine verbesserte Ausführung sinnvoll ist."),
+        ("Wird das Aggregat einbaufertig geliefert?",
+         "Ja. Das Aggregat wird montiert, geprüft und mit Dokumentation ausgeliefert."),
+    ],
+    "kuehl-filtermodule.html": [
+        ("Wozu ein separates Kühl- und Filtermodul?",
+         "Ein eigener Kühl- und Filterkreislauf (Nebenstrom) arbeitet unabhängig vom Arbeitskreis der Maschine. Das Öl wird so gleichmäßig gekühlt und gefiltert – auch dann, wenn die Maschine gerade wenig leistet. Zudem lassen sich feinere Filter einsetzen."),
+        ("Was bedeutet Filterfeinheit 3 µm?",
+         "Der Filter hält Partikel ab etwa 3 Mikrometern zurück, das ist rund ein Zwanzigstel eines Haares. Feinere Filtration schützt Pumpen und Ventile besser, erhöht aber den Druckverlust. Die passende Feinheit legen wir nach Ihren Komponenten aus."),
+        ("Gibt es die Module auch für 12 oder 24 Volt?",
+         "Ja, neben Wechsel- und Drehstrom gibt es Ausführungen mit Gleichstromantrieb – etwa für Fahrzeuge und mobile Maschinen."),
+    ],
+    "motor-pumpen-kombinationen.html": [
+        ("Was ist eine Motor-Pumpen-Kombination?",
+         "Elektromotor und Hydraulikpumpe, die über Pumpenträger und Kupplung fertig miteinander verbunden und ausgerichtet sind. Sie bauen die Einheit nur noch ein und schließen sie an."),
+        ("Wann lohnt sich ein bürstenloser Gleichstromantrieb?",
+         "Überall dort, wo Batterie- oder Bordspannung von 12, 24 oder 48 V zur Verfügung steht, etwa in Fahrzeugen und mobilen Geräten. Bürstenlose Motoren sind wartungsarm und erreichen über 40.000 Betriebsstunden."),
+        ("Wie wähle ich die richtige Motorleistung?",
+         "Die Leistung ergibt sich vor allem aus Druck und Fördermenge. Als grobe Faustformel gilt: Leistung in kW ≈ Druck in bar × Fördermenge in l/min ÷ 600, dazu ein Zuschlag für den Wirkungsgrad. Die genaue Auslegung übernehmen wir."),
+    ],
+    "komponenten.html": [
+        ("Welche Angaben brauchen Sie, um ein Ersatzteil zu finden?",
+         "Am wichtigsten ist das Typenschild: Hersteller, Typbezeichnung und Seriennummer. Ein Foto des eingebauten Teils hilft zusätzlich bei Anschlüssen und Maßen."),
+        ("Liefern Sie nur das Originalteil?",
+         "Wir prüfen beides: ob das Originalteil verfügbar ist und ob es einen gleichwertigen Ersatz gibt. Sie entscheiden dann mit unserem Angebot."),
+        ("Welche Pumpe passt zu meiner Anwendung?",
+         "Das hängt von Druck, Fördermenge, Medium und Geräuschanforderung ab. Die Tabelle oben gibt eine erste Orientierung – die Auslegung übernehmen wir gern für Sie."),
+    ],
+}
+
+
+# Dativ für „Fragen zu …?“ – die Kurznamen stehen im Nominativ
+DATIVE = {
+    "produkte.html": "unseren Produkten",
+    "plattenwaermetauscher.html": "Plattenwärmetauschern",
+    "waermetauscher-kuehler.html": "Wärmetauschern & Kühlern",
+    "hydraulikaggregate.html": "Hydraulikaggregaten",
+    "kuehl-filtermodule.html": "Kühl- & Filtermodulen",
+    "motor-pumpen-kombinationen.html": "Motor-Pumpen-Kombinationen",
+    "komponenten.html": "Komponenten & Ersatzteilen",
+}
+
 
 def product_extras(file: str) -> str:
     """Datenblätter, Ansprechpartner-CTA und verwandte Produkte unter jeder Produktseite."""
     from urllib.parse import quote
     _, _, name, docs = PRODUCTS[file]
     parts = []
+    if file in FAQ:
+        qa = "\n".join(
+            f'    <details class="pp-faq__item"><summary>{esc(q)}</summary><p>{esc(a)}</p></details>'
+            for q, a in FAQ[file])
+        parts.append('<section class="pp-section pp-faq" aria-labelledby="pp-faq-title">\n'
+                     '  <h2 id="pp-faq-title">Häufige Fragen</h2>\n' + qa + '\n</section>')
     if docs:
         items = []
         for doc in docs:
@@ -143,7 +229,7 @@ def product_extras(file: str) -> str:
                      '  <ul class="pp-doclist">\n' + "\n".join(items) + '\n  </ul>\n</section>')
     parts.append(f"""<section class="pp-cta" aria-labelledby="pp-cta-title">
   <div>
-    <h2 id="pp-cta-title">Fragen zu {esc(name)}?</h2>
+    <h2 id="pp-cta-title">Fragen zu {esc(DATIVE.get(file, name))}?</h2>
     <p>Beschreiben Sie Ihre Anwendung in ein paar Stichworten oder rufen Sie an – wir legen aus und schicken Ihnen ein Angebot.</p>
     <div class="pp-actions">
       <a class="btn btn--primary" href="./#kontakt">Anfrage stellen</a>
@@ -156,6 +242,26 @@ def product_extras(file: str) -> str:
     links = "\n".join(f'    <li><a href="{f}">{esc(PRODUCTS[f][2])}</a></li>' for f in others)
     parts.append(f'<nav class="pp-related" aria-label="Weitere Produkte">\n  <h2>Weitere Produkte</h2>\n  <ul>\n{links}\n  </ul>\n</nav>')
     return "\n\n".join(parts)
+
+
+def faq_ld(pairs) -> str:
+    import json
+    data = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in pairs]}
+    return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False).replace("</", "<\\/") + "</script>"
+
+
+def faq_jsonld(file: str) -> str:
+    return faq_ld(FAQ[file]) if file in FAQ else ""
+
+
+def index_faq_jsonld(html: str) -> str:
+    """FAQPage-Daten aus den sichtbaren <details>-Fragen der Startseite ableiten – eine Quelle, kein Doppelpflegen."""
+    import html as h
+    def text(fragment: str) -> str:
+        return h.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", fragment))).strip()
+    pairs = [(text(q), text(a)) for q, a in re.findall(r"<details[^>]*>\s*<summary[^>]*>(.*?)</summary>(.*?)</details>", html, re.S)]
+    return faq_ld(pairs) if pairs else ""
 
 
 def product_page(file: str, head: str, header: str, footer: str, theme: str, body_class: str) -> str:
@@ -183,8 +289,10 @@ def product_page(file: str, head: str, header: str, footer: str, theme: str, bod
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:url" content="{DOMAIN}/{file}">
+<!-- og-image -->
 {head}
 <script type="application/ld+json">{{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{items}]}}</script>
+{faq_jsonld(file)}
 </head>
 <body class="{body_class} page-product">
 <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
@@ -220,7 +328,8 @@ def build_variant(name: str) -> None:
         shutil.rmtree(out)
     (out / "assets" / "fonts").mkdir(parents=True)
 
-    index = expand((src / "index.html").read_text(encoding="utf-8"))
+    index = expand((src / "index.html").read_text(encoding="utf-8")).replace("<!-- og-image -->", og_image_tags(name))
+    index = index.replace("</head>", index_faq_jsonld(index) + "\n</head>", 1)
     css = (src / "style.css").read_text(encoding="utf-8")
     (out / "index.html").write_text(index, encoding="utf-8")
     (out / "style.css").write_text(css, encoding="utf-8")
@@ -231,7 +340,8 @@ def build_variant(name: str) -> None:
     for file in LEGAL_PAGES:
         (out / file).write_text(legal_page(file, head, header, footer, theme, body_class), encoding="utf-8")
     for file in PRODUCTS:
-        (out / file).write_text(expand(product_page(file, head, header, footer, theme, body_class)), encoding="utf-8")
+        page = expand(product_page(file, head, header, footer, theme, body_class))
+        (out / file).write_text(page.replace("<!-- og-image -->", og_image_tags(name)), encoding="utf-8")
     for old, target in OLD_URLS.items():
         (out / old).write_text(redirect_stub(target), encoding="utf-8")
 
@@ -241,6 +351,8 @@ def build_variant(name: str) -> None:
     shutil.copytree(SHARED / "img", out / "assets" / "img")
     shutil.copy(SHARED / "main.js", out / "assets" / "main.js")
     shutil.copy(SHARED / "components.css", out / "assets" / "components.css")
+    if (src / "og.jpg").exists():
+        shutil.copy(src / "og.jpg", out / "assets" / "og.jpg")
     if (src / "extra.js").exists():
         shutil.copy(src / "extra.js", out / "assets" / "extra.js")
     for icon in ("favicon.svg", "favicon-32.png", "apple-touch-icon.png"):

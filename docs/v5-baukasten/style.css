@@ -112,7 +112,7 @@ a:hover { color: var(--signal); }
 .b { display: flex; flex-direction: column; justify-content: flex-end; min-height: 8.5rem; padding: var(--s-3); border-radius: var(--r-xl); background: var(--white); box-shadow: var(--shadow-lift); }
 .b strong { font-size: clamp(2.25rem, 1.6rem + 2.4vw, 3.5rem); font-weight: 800; line-height: 1; letter-spacing: -0.04em; }
 .b strong small { font-size: 0.42em; letter-spacing: 0; }
-.b span { font-size: var(--fs-sm); color: var(--text-2); margin-top: 0.3rem; }
+.b span { font-size: var(--fs-sm); color: var(--text-2); margin-top: 0.3rem; hyphens: auto; overflow-wrap: anywhere; }
 .b--photo { grid-column: span 2; padding: var(--s-2); background: var(--white); justify-content: space-between; align-items: center; }
 .b--photo img { width: 100%; max-width: 240px; }
 .b__cap { font: 400 var(--fs-xs) var(--mono) !important; align-self: flex-start; }
@@ -160,12 +160,12 @@ a:hover { color: var(--signal); }
 
 /* Beispiele */
 .examples { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 21rem), 1fr)); }
-.ex { display: grid; grid-template-columns: 7.5rem 1fr; gap: var(--s-2); align-items: center; padding: var(--s-2); border-radius: var(--r-xl); background: var(--white); transition: transform var(--t), box-shadow var(--t); }
+.ex { display: grid; grid-template-columns: clamp(5rem, 26vw, 7.5rem) minmax(0, 1fr); gap: var(--s-2); align-items: center; padding: var(--s-2); border-radius: var(--r-xl); background: var(--white); transition: transform var(--t), box-shadow var(--t); }
 .ex:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
 .ex img { border-radius: var(--r-md); }
-.ex h3 { font-size: 1.0625rem; letter-spacing: -0.01em; margin-bottom: 0.5rem; }
+.ex h3 { font-size: 1.0625rem; letter-spacing: -0.01em; margin-bottom: 0.5rem; hyphens: auto; overflow-wrap: break-word; }
 .ex__mods { display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 0; }
-.ex__mods span { padding: 0.15rem 0.5rem; border-radius: 6px; background: var(--grey); font: 400 0.75rem/1.5 var(--mono); }
+.ex__mods span { hyphens: auto; overflow-wrap: anywhere; padding: 0.15rem 0.5rem; border-radius: 6px; background: var(--grey); font: 400 0.75rem/1.5 var(--mono); }
 
 /* Ablauf */
 .process { display: grid; gap: var(--s-4); }

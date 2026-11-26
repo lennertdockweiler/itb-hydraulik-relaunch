@@ -199,3 +199,8 @@
 
   window.ITB = { prefill };
 })();
+
+// Beim Drucken alle FAQ-Antworten aufklappen
+window.addEventListener('beforeprint', function () {
+  document.querySelectorAll('.pp-faq details').forEach(function (d) { d.open = true; });
+});

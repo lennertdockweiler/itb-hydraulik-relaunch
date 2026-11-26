@@ -141,7 +141,7 @@ a:hover { color: var(--hot); }
 .stats { list-style: none; margin: var(--s-6) 0 0; padding: var(--s-4) 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-4) var(--s-3); border-top: 1px solid var(--navy-line); }
 .stats__value { display: block; font: 700 var(--fs-stat)/1 var(--font); font-stretch: 70%; color: var(--white); }
 .stats__value small { font-size: 0.45em; font-stretch: 100%; color: var(--aqua); }
-.stats__label { display: block; margin-top: 0.4rem; font-size: var(--fs-xs); line-height: 1.4; color: var(--text-inv); max-width: 22ch; }
+.stats__label { display: block; margin-top: 0.4rem; font-size: var(--fs-xs); line-height: 1.4; color: var(--text-inv); max-width: 22ch; hyphens: auto; overflow-wrap: break-word; }
 @media (min-width: 62em) { .stats { grid-template-columns: repeat(4, 1fr); } }
 
 /* Sektionen allgemein */
@@ -172,7 +172,7 @@ a:hover { color: var(--hot); }
 .tick li::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 0.7rem; height: 0.7rem; border-radius: 50%; border: 2px solid currentColor; opacity: 0.7; }
 
 /* Wärmetauscher */
-.phe { display: grid; gap: var(--s-5); }
+.phe { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-5); }
 .phe__text p { color: var(--text-inv); }
 .phe__text .btn { margin-top: var(--s-2); }
 .gauges { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-2); margin: 0 0 var(--s-4); }
@@ -181,14 +181,15 @@ a:hover { color: var(--hot); }
 .gauges dd { margin: var(--s-1) 0 0; font: 700 clamp(1.75rem, 1.2rem + 2vw, 2.75rem)/1 var(--font); font-stretch: 70%; color: var(--white); }
 .gauges dd small { font-size: 0.5em; color: var(--aqua); }
 .gauges p { margin: 0.3rem 0 0; font-size: var(--fs-xs); }
-.spec { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
+.spec { width: 100%; table-layout: fixed; border-collapse: collapse; font-size: var(--fs-sm); }
+.spec th, .spec td { hyphens: auto; overflow-wrap: anywhere; }
 .spec caption { text-align: left; font: 500 var(--fs-xs) var(--mono); color: var(--cold-inv); padding-bottom: var(--s-1); }
 .spec th, .spec td { padding: 0.75rem 0; border-top: 1px solid var(--navy-line); text-align: left; vertical-align: top; }
 .spec th { width: 32%; padding-right: var(--s-2); font-weight: 600; color: var(--white); }
 .spec abbr { text-decoration: underline dotted; cursor: help; font-family: var(--mono); color: var(--aqua); }
 .forms { list-style: none; padding: 0; margin: var(--s-3) 0 0; display: grid; gap: var(--s-1); font-size: var(--fs-sm); }
 .forms strong { display: inline-block; min-width: 3.2rem; font-family: var(--mono); color: var(--aqua); }
-@media (min-width: 62em) { .phe { grid-template-columns: 1fr 1fr; gap: var(--s-6); align-items: start; } }
+@media (min-width: 62em) { .phe { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-6); align-items: start; } }
 
 /* Aggregate */
 .units { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--s-3); grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr)); }
@@ -316,3 +317,9 @@ a:hover { color: var(--hot); }
 /* Kennwert-Hinweis in den Gauges (zweites dd statt p – gültige Definitionsliste) */
 .gauges dd.gauges__note { margin: 0.3rem 0 0; font: 400 var(--fs-xs)/1.4 var(--font); font-stretch: 100%; color: var(--text-inv); }
 .section--dark .more-link { color: var(--aqua); margin-left: var(--s-2); }
+
+/* Sehr schmale Handys (≤ 336 px): Messwerte zweispaltig statt dreispaltig */
+@media (max-width: 21em) {
+  .gauges { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gauges div:last-child { grid-column: 1 / -1; }
+}
