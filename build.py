@@ -360,7 +360,9 @@ def build_variant(name: str) -> None:
             shutil.copy(SHARED / icon, out / icon)
 
     (out / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {DOMAIN}/sitemap.xml\n", encoding="utf-8")
-    urls = "".join(f"  <url><loc>{DOMAIN}/{p}</loc></url>\n" for p in ("", *PRODUCTS, "impressum.html", "datenschutz.html"))
+    from datetime import date
+    today = date.today().isoformat()
+    urls = "".join(f"  <url><loc>{DOMAIN}/{p}</loc><lastmod>{today}</lastmod></url>\n" for p in ("", *PRODUCTS, "impressum.html", "datenschutz.html"))
     (out / "sitemap.xml").write_text(
         f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n',
         encoding="utf-8",
