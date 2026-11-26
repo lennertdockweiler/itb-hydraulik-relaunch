@@ -1,0 +1,51 @@
+<!-- [[ERSETZEN: Formspree-Formular-ID im action-Attribut eintragen (formspree.io → New Form). Bis dahin läuft das Formular im Vorschau-Modus.]] -->
+<form class="inquiry" data-inquiry action="https://formspree.io/f/ERSETZEN-FORMSPREE-ID" method="post">
+  <p class="inquiry__legend">Felder mit * sind Pflichtfelder.</p>
+  <div class="inquiry__grid">
+    <div class="field">
+      <label for="f-name">Name *</label>
+      <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-error" data-missing="Bitte nennen Sie uns Ihren Namen.">
+      <p class="field__error" id="f-name-error"></p>
+    </div>
+    <div class="field">
+      <label for="f-firma">Firma</label>
+      <input id="f-firma" name="firma" type="text" autocomplete="organization">
+    </div>
+    <div class="field">
+      <label for="f-email">E-Mail *</label>
+      <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-error" data-missing="Wohin dürfen wir das Angebot schicken?">
+      <p class="field__error" id="f-email-error"></p>
+    </div>
+    <div class="field">
+      <label for="f-tel">Telefon <span class="field__optional">für Rückfragen</span></label>
+      <input id="f-tel" name="telefon" type="tel" autocomplete="tel">
+    </div>
+    <div class="field field--wide">
+      <label for="f-anliegen">Worum geht es?</label>
+      <select id="f-anliegen" name="anliegen">
+        <option value="waermetauscher">Plattenwärmetauscher / Ölkühler</option>
+        <option value="aggregat">Hydraulikaggregat</option>
+        <option value="kuehlmodul">Kühl- oder Filtermodul</option>
+        <option value="motor-pumpe">Motor-Pumpen-Kombination</option>
+        <option value="komponenten">Einzelkomponenten (Pumpen, Filter, Schalter)</option>
+        <option value="datenblatt">Datenblatt anfordern</option>
+        <option value="sonstiges">Etwas anderes</option>
+      </select>
+    </div>
+    <div class="field field--wide">
+      <label for="f-nachricht">Ihre Anwendung *</label>
+      <p class="field__hint" id="f-nachricht-hint">Je mehr Betriebsdaten, desto genauer die Auslegung: Medium, Volumenstrom (l/min), Ein- und Austrittstemperaturen, Leistung (kW), Betriebsdruck, Stückzahl.</p>
+      <textarea id="f-nachricht" name="nachricht" rows="6" required aria-describedby="f-nachricht-hint f-nachricht-error" data-missing="Beschreiben Sie kurz Ihre Anwendung – Stichworte genügen."></textarea>
+      <p class="field__error" id="f-nachricht-error"></p>
+    </div>
+  </div>
+  <div class="hp" aria-hidden="true">
+    <label for="f-gotcha">Dieses Feld bitte leer lassen</label>
+    <input id="f-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+  </div>
+  <div class="inquiry__submit">
+    <button class="btn btn--primary" type="submit">Auslegung &amp; Angebot anfragen</button>
+    <p class="inquiry__privacy">Ihre Angaben nutzen wir nur zur Bearbeitung dieser Anfrage. Mehr dazu in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+  </div>
+  <p class="form-status" data-status role="status" aria-live="polite"></p>
+</form>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ITB Relaunch – 5 Entwürfe</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="v1-datenblatt/favicon.svg" type="image/svg+xml">
+<style>
+  :root { --bg: #F3F7F5; --ink: #10261B; --muted: #3D5248; --green: #0E4A2E; --line: #B9D0C5; --mint: #D4F0EA; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 1.0625rem/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { width: min(100% - 2rem, 60rem); margin: 0 auto; padding: 4rem 0; }
+  h1 { font-size: clamp(1.75rem, 1.2rem + 2.5vw, 2.75rem); line-height: 1.15; margin: 0 0 1rem; }
+  .lead { color: var(--muted); max-width: 60ch; }
+  ol { list-style: none; padding: 0; margin: 3rem 0 0; display: grid; gap: 1rem; }
+  a.card { display: grid; grid-template-columns: 3.5rem 1fr; gap: 1rem; padding: 1.5rem; background: #fff; border: 1px solid var(--line); border-radius: 6px; color: inherit; text-decoration: none; transition: border-color .15s, transform .15s; }
+  a.card:hover { border-color: var(--green); transform: translateY(-2px); }
+  a.card:focus-visible { outline: 3px solid #9A3A22; outline-offset: 3px; }
+  .no { display: grid; place-items: center; width: 3.5rem; height: 3.5rem; border-radius: 50%; background: var(--swatch); color: var(--on); font-weight: 700; }
+  h2 { margin: 0; font-size: 1.25rem; }
+  p { margin: .25rem 0 0; color: var(--muted); }
+  footer { margin-top: 3rem; font-size: .875rem; color: var(--muted); }
+  @media (prefers-reduced-motion: reduce) { a.card { transition: none; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>itb-hydraulik.com – fünf Entwürfe für den Relaunch</h1>
+  <p class="lead">Gleicher Inhalt, gleiche Funktionen, fünf unterschiedliche Gestaltungen. Alle Farbwelten leiten sich vom bisherigen Auftritt ab: Logo-Grün, Mint/Aqua, Navy und das Rotbraun der alten Seite.</p>
+  <ol>
+    <li><a class="card" href="v1-datenblatt/" style="--swatch:#0E4A2E;--on:#D4F0EA"><span class="no">1</span><span><h2>Datenblatt</h2><p>Technische Zeichnung: Millimeterraster, Maßlinien, Schriftfelder. Hell, präzise, für Ingenieure.</p></span></a></li>
+    <li><a class="card" href="v2-kreislauf/" style="--swatch:#0B2A4A;--on:#BFE8E4"><span class="no">2</span><span><h2>Kreislauf</h2><p>Animiertes Hydraulikschema im Hero, warm/kalt als Farbcode. Navy und Aqua.</p></span></a></li>
+    <li><a class="card" href="v3-editorial/" style="--swatch:#123D2A;--on:#F6F3EC"><span class="no">3</span><span><h2>Editorial</h2><p>Ruhig und hochwertig wie ein Fachmagazin: Serifen-Headlines, Marginalien, Bodensee-Creme.</p></span></a></li>
+    <li><a class="card" href="v4-werkhalle/" style="--swatch:#0C1613;--on:#9BE3D0"><span class="no">4</span><span><h2>Werkhalle</h2><p>Dunkel und kraftvoll mit Thermometer-Skala, die beim Scrollen von 200 °C abkühlt.</p></span></a></li>
+    <li><a class="card" href="v5-baukasten/" style="--swatch:#B5512C;--on:#fff"><span class="no">5</span><span><h2>Baukasten</h2><p>Interaktiver Aggregat-Konfigurator, der die Anfrage vorausfüllt. Modular, hell, direkt.</p></span></a></li>
+  </ol>
+  <footer>Vorschau – nicht für Suchmaschinen freigegeben.</footer>
+</main>
+</body>
+</html>
