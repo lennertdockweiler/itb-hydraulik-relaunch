@@ -312,3 +312,7 @@ a:hover { color: var(--hot); }
   .flow { animation: none; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
 }
+
+/* Kennwert-Hinweis in den Gauges (zweites dd statt p – gültige Definitionsliste) */
+.gauges dd.gauges__note { margin: 0.3rem 0 0; font: 400 var(--fs-xs)/1.4 var(--font); font-stretch: 100%; color: var(--text-inv); }
+.section--dark .more-link { color: var(--aqua); margin-left: var(--s-2); }

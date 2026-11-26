@@ -28,12 +28,42 @@ DOMAIN = "https://itb-hydraulik.com"
 
 VARIANTS = ["v1-datenblatt", "v2-kreislauf", "v3-editorial", "v4-werkhalle", "v5-baukasten"]
 
-# Alte URLs der bisherigen Website -> neue Sprungziele (Weiterleitungs-Stubs)
+# Alte URLs der bisherigen Website -> neue Sprungziele (Weiterleitungs-Stubs).
+# plattenwaermetauscher.html und hydraulikaggregate.html sind wieder echte Produktseiten.
 OLD_URLS = {
     "index.htm": "./",
-    "plattenwaermetauscher.html": "./#waermetauscher",
-    "hydraulikaggregate.html": "./#aggregate",
     "kontakt.html": "./#kontakt",
+}
+
+# Produktseiten: Datei -> (Titel, Description, Kurzname, Datenblätter)
+PRODUCTS = {
+    "produkte.html": ("Produkte: Wärmetauscher, Hydraulikaggregate, Komponenten",
+        "Plattenwärmetauscher, Rohrbündel- und Luftkühler, Hydraulikaggregate, Kühl- und Filtermodule, Motor-Pumpen-Kombinationen und Komponenten von ITB Radolfzell.",
+        "Produkte", []),
+    "plattenwaermetauscher.html": ("Gelötete Edelstahl-Plattenwärmetauscher bis 55 bar & 200 °C",
+        "Gelötete Plattenwärmetauscher WP, NP, GBS, GBH, GNS: bis 55 bar, 200 °C, Flansch bis DN 100, Bauformen X, Z, U, DW, DUO, Schwimmbad-Typ XCR. Auslegung durch ITB.",
+        "Plattenwärmetauscher",
+        ["Übersicht gelötete Plattenwärmetauscher (PLWT)", "Maßblätter Baureihe WP", "Maßblätter Baureihe GBS", "Schwimmbad-Ausführung Typ XCR", "Leistungs- und Druckverlustdiagramme"]),
+    "waermetauscher-kuehler.html": ("Rohrbündel-Wärmetauscher, Luft-Ölkühler, Ladeluftkühler",
+        "Rohrbündel-, Marine- und Stationär-Wärmetauscher, Ladeluft- und Abgas-Wärmetauscher, Luft-Öl- und Luft-Wasserkühler, Kompakt-Durchlauferhitzer von ITB.",
+        "Wärmetauscher & Kühler",
+        ["Rohrbündel-Wärmetauscher", "Luft-Ölkühler (u. a. LKE6)", "Luft-Wasserkühler", "Ladeluft- und Abgas-Wärmetauscher"]),
+    "hydraulikaggregate.html": ("Hydraulikaggregate bis über 300 bar – ab Stückzahl 1",
+        "Hydraulikaggregate aus dem ITB-Baukasten: Tank, Pumpe, Motor, Ventilblock, Filter. Bis über 300 bar, 0,12–22 kW, montiert, geprüft, dokumentiert – auch als Einzelstück.",
+        "Hydraulikaggregate",
+        ["Baukasten-Übersicht Hydraulikaggregate", "Beispiel-Hydraulikschaltplan", "Fragebogen zur Aggregat-Auslegung"]),
+    "kuehl-filtermodule.html": ("Kühl-, Filter- und Schmiermodule für Öl & Wasser-Glykol",
+        "Einbaufertige Kühl-, Filter- und Schmiermodule von ITB: mit Plattenwärmetauscher, Filtration bis 3 µm, Tanks von 6,5 bis 100 l, AC- und DC-Antrieb.",
+        "Kühl- & Filtermodule",
+        ["Übersicht Kühl- und Filtermodule", "Fragebogen zur Kühlmodul-Auslegung"]),
+    "motor-pumpen-kombinationen.html": ("Motor-Pumpen-Kombinationen AC 0,12–22 kW & DC 12–48 V",
+        "Motor-Pumpen-Kombinationen von ITB: Normmotoren 230/400 V bis ca. 22 kW oder bürstenlos DC 12/24/48 V, bis über 300 bar, über 40.000 h Lebensdauer, bis IP68.",
+        "Motor-Pumpen-Kombinationen",
+        ["Motor-Pumpen-Kombinationen AC", "Motor-Pumpen-Kombinationen DC mit Ansteuerelektronik"]),
+    "komponenten.html": ("Hydraulik-Komponenten & Ersatzteile: Pumpen, Filter, Schalter",
+        "Zahnrad-, Axialkolben-, Flügelzellen- und Schraubenspindelpumpen, Filter, Niveau- und Druckschalter einzeln – und Ersatz für vorhandene Geräte. ITB Radolfzell.",
+        "Komponenten & Ersatz",
+        ["Pumpen-Übersicht", "Filter und Zubehör"]),
 }
 
 LEGAL_PAGES = {
@@ -89,6 +119,90 @@ def legal_page(file: str, head: str, header: str, footer: str, theme: str, body_
 """
 
 
+def esc(text: str) -> str:
+    return text.replace("&", "&amp;").replace("<", "&lt;").replace('"', "&quot;")
+
+
+def product_extras(file: str) -> str:
+    """Datenblätter, Ansprechpartner-CTA und verwandte Produkte unter jeder Produktseite."""
+    from urllib.parse import quote
+    _, _, name, docs = PRODUCTS[file]
+    parts = []
+    if docs:
+        items = []
+        for doc in docs:
+            msg = quote(f"Bitte senden Sie mir das Datenblatt: {doc}")
+            items.append(
+                f'    <li class="pp-doc"><span class="pp-doc__icon" aria-hidden="true">PDF</span>'
+                f'<span class="pp-doc__name">{esc(doc)}<small>Download folgt – bis dahin schicken wir es Ihnen gern zu</small></span>'
+                f'<a class="pp-doc__get" href="./?anliegen=datenblatt&amp;nachricht={msg}#kontakt">Anfordern<span class="visually-hidden">: {esc(doc)}</span></a>'
+                f'<!-- [[ERSETZEN: PDF unter assets/docs/ ablegen und hier als Download verlinken]] --></li>'
+            )
+        parts.append('<section class="pp-section pp-docs" id="datenblaetter" aria-labelledby="pp-docs-title">\n'
+                     '  <h2 id="pp-docs-title">Datenblätter &amp; Downloads</h2>\n'
+                     '  <ul class="pp-doclist">\n' + "\n".join(items) + '\n  </ul>\n</section>')
+    parts.append(f"""<section class="pp-cta" aria-labelledby="pp-cta-title">
+  <div>
+    <h2 id="pp-cta-title">Fragen zu {esc(name)}?</h2>
+    <p>Beschreiben Sie Ihre Anwendung in ein paar Stichworten oder rufen Sie an – wir legen aus und schicken Ihnen ein Angebot.</p>
+    <div class="pp-actions">
+      <a class="btn btn--primary" href="./#kontakt">Anfrage stellen</a>
+      <a class="pp-link" href="./#baukasten">Im Baukasten zusammenstellen</a>
+    </div>
+  </div>
+  {partial("contact-person")}
+</section>""")
+    others = [f for f in PRODUCTS if f not in (file, "produkte.html")][:6]
+    links = "\n".join(f'    <li><a href="{f}">{esc(PRODUCTS[f][2])}</a></li>' for f in others)
+    parts.append(f'<nav class="pp-related" aria-label="Weitere Produkte">\n  <h2>Weitere Produkte</h2>\n  <ul>\n{links}\n  </ul>\n</nav>')
+    return "\n\n".join(parts)
+
+
+def product_page(file: str, head: str, header: str, footer: str, theme: str, body_class: str) -> str:
+    title, desc, name, _ = PRODUCTS[file]
+    content = (SHARED / "products" / file).read_text(encoding="utf-8").strip()
+    crumbs = [("Start", f"{DOMAIN}/")]
+    if file != "produkte.html":
+        crumbs.append(("Produkte", f"{DOMAIN}/produkte.html"))
+    crumbs.append((name, f"{DOMAIN}/{file}"))
+    items = ",".join(
+        f'{{"@type":"ListItem","position":{i},"name":"{n}","item":"{u}"}}' for i, (n, u) in enumerate(crumbs, 1)
+    )
+    header = header.replace('href="produkte.html"', 'href="produkte.html" aria-current="page"')
+    return f"""<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{esc(title)} – ITB Radolfzell</title>
+<meta name="description" content="{esc(desc)}">
+<link rel="canonical" href="{DOMAIN}/{file}">
+<meta name="theme-color" content="{theme}">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="{esc(title)}">
+<meta property="og:description" content="{esc(desc)}">
+<meta property="og:url" content="{DOMAIN}/{file}">
+{head}
+<script type="application/ld+json">{{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{items}]}}</script>
+</head>
+<body class="{body_class} page-product">
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+{header}
+<main id="inhalt" class="pp">
+<div class="pp__inner">
+{content}
+
+{product_extras(file)}
+</div>
+</main>
+{footer}
+<script src="assets/main.js" defer></script>
+</body>
+</html>
+"""
+
+
 def redirect_stub(target: str) -> str:
     return f"""<!doctype html>
 <html lang="de"><head><meta charset="utf-8"><title>Weiterleitung – ITB</title>
@@ -116,6 +230,8 @@ def build_variant(name: str) -> None:
     body_class = re.search(r'<body class="([^"]*)"', index).group(1)
     for file in LEGAL_PAGES:
         (out / file).write_text(legal_page(file, head, header, footer, theme, body_class), encoding="utf-8")
+    for file in PRODUCTS:
+        (out / file).write_text(expand(product_page(file, head, header, footer, theme, body_class)), encoding="utf-8")
     for old, target in OLD_URLS.items():
         (out / old).write_text(redirect_stub(target), encoding="utf-8")
 
@@ -132,7 +248,7 @@ def build_variant(name: str) -> None:
             shutil.copy(SHARED / icon, out / icon)
 
     (out / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {DOMAIN}/sitemap.xml\n", encoding="utf-8")
-    urls = "".join(f"  <url><loc>{DOMAIN}/{p}</loc></url>\n" for p in ("", "impressum.html", "datenschutz.html"))
+    urls = "".join(f"  <url><loc>{DOMAIN}/{p}</loc></url>\n" for p in ("", *PRODUCTS, "impressum.html", "datenschutz.html"))
     (out / "sitemap.xml").write_text(
         f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n',
         encoding="utf-8",

@@ -133,6 +133,15 @@
     if (trigger) prefill(trigger.dataset.topic, trigger.dataset.prefill);
   });
 
+  /* Vorbefüllen per URL – z. B. von Produktseiten: ./?anliegen=datenblatt&nachricht=…#kontakt */
+  const params = new URLSearchParams(location.search);
+  if (params.has("anliegen") || params.has("nachricht")) {
+    const topic = params.get("anliegen");
+    const known = [...form.elements.anliegen.options].some((o) => o.value === topic);
+    prefill(known ? topic : null, params.get("nachricht"));
+    history.replaceState(null, "", location.pathname + location.hash);
+  }
+
   /* 4. Baukasten-Konfigurator ------------------------------------------- */
   const kit = d.querySelector("[data-kit]");
   if (kit) {
