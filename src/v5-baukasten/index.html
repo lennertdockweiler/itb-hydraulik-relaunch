@@ -72,96 +72,10 @@
       <div class="section__head">
         <p class="tag">Der ITB-Baukasten</p>
         <h2 id="kit-title">Stellen Sie Ihr Aggregat in einer Minute zusammen.</h2>
-        <p class="section__lead">Unverbindlich. Unsicher bei einer Angabe? Wählen Sie „bitte auslegen“ – genau dafür sind wir da.</p>
+        <p class="section__lead">Unverbindlich und ohne Fachkenntnis. Unsicher bei einer Angabe? Wählen Sie „bitte auslegen“ – genau dafür sind wir da.</p>
       </div>
 
-      <div class="kit">
-        <form class="kit__form" data-kit aria-describedby="kit-hint">
-          <p id="kit-hint" class="visually-hidden">Ihre Auswahl erscheint rechts als Stückliste und kann in das Anfrageformular übernommen werden.</p>
-
-          <fieldset class="kit__step">
-            <legend><span class="kit__no">1</span> Was soll das Aggregat leisten? <span class="kit__multi">Mehrfachauswahl</span></legend>
-            <div class="chips">
-              <label class="chip"><input type="checkbox" name="aufgabe" value="Druckölversorgung" data-module="pumpe"><span>Druck erzeugen</span></label>
-              <label class="chip"><input type="checkbox" name="aufgabe" value="Kühlen" data-module="kuehler"><span>Kühlen</span></label>
-              <label class="chip"><input type="checkbox" name="aufgabe" value="Filtern" data-module="filter"><span>Filtern</span></label>
-              <label class="chip"><input type="checkbox" name="aufgabe" value="Schmieren" data-module="pumpe"><span>Schmieren</span></label>
-            </div>
-          </fieldset>
-
-          <fieldset class="kit__step">
-            <legend><span class="kit__no">2</span> Welches Medium?</legend>
-            <div class="chips">
-              <label class="chip"><input type="radio" name="medium" value="Hydrauliköl" checked><span>Hydrauliköl</span></label>
-              <label class="chip"><input type="radio" name="medium" value="Getriebeöl"><span>Getriebeöl</span></label>
-              <label class="chip"><input type="radio" name="medium" value="Schmieröl"><span>Schmieröl</span></label>
-              <label class="chip"><input type="radio" name="medium" value="Wasser-Glykol"><span>Wasser-Glykol</span></label>
-              <label class="chip"><input type="radio" name="medium" value="Emulsion"><span>Emulsion</span></label>
-            </div>
-          </fieldset>
-
-          <fieldset class="kit__step">
-            <legend><span class="kit__no">3</span> Pumpe</legend>
-            <div class="chips">
-              <label class="chip"><input type="radio" name="pumpe" value="bitte auslegen" checked><span>bitte auslegen</span></label>
-              <label class="chip"><input type="radio" name="pumpe" value="Zahnradpumpe"><span>Zahnrad</span></label>
-              <label class="chip"><input type="radio" name="pumpe" value="Axialkolbenpumpe"><span>Axialkolben</span></label>
-              <label class="chip"><input type="radio" name="pumpe" value="Flügelzellenpumpe"><span>Flügelzelle</span></label>
-              <label class="chip"><input type="radio" name="pumpe" value="Schraubenspindelpumpe"><span>Schraubenspindel</span></label>
-              <label class="chip"><input type="radio" name="pumpe" value="Kreiselpumpe"><span>Kreisel</span></label>
-            </div>
-          </fieldset>
-
-          <fieldset class="kit__step">
-            <legend><span class="kit__no">4</span> Antrieb</legend>
-            <div class="chips">
-              <label class="chip"><input type="radio" name="antrieb" value="bitte auslegen" checked><span>bitte auslegen</span></label>
-              <label class="chip"><input type="radio" name="antrieb" value="230 V AC"><span>230 V AC</span></label>
-              <label class="chip"><input type="radio" name="antrieb" value="400 V Drehstrom"><span>400 V Drehstrom</span></label>
-              <label class="chip"><input type="radio" name="antrieb" value="12/24/48 V DC, bürstenlos"><span>12–48 V DC</span></label>
-            </div>
-          </fieldset>
-
-          <fieldset class="kit__step">
-            <legend><span class="kit__no">5</span> Tank</legend>
-            <div class="chips">
-              <label class="chip"><input type="radio" name="tank" value="bis 10 l" data-module="tank"><span>bis 10 l</span></label>
-              <label class="chip"><input type="radio" name="tank" value="10–50 l" data-module="tank" checked><span>10–50 l</span></label>
-              <label class="chip"><input type="radio" name="tank" value="50–100 l" data-module="tank"><span>50–100 l</span></label>
-              <label class="chip"><input type="radio" name="tank" value="über 100 l" data-module="tank"><span>über 100 l</span></label>
-              <label class="chip"><input type="radio" name="tank" value="ohne Tank (Motor-Pumpen-Kombination)"><span>ohne Tank</span></label>
-            </div>
-          </fieldset>
-
-          <fieldset class="kit__step">
-            <legend><span class="kit__no">6</span> Zubehör <span class="kit__multi">Mehrfachauswahl</span></legend>
-            <div class="chips">
-              <label class="chip"><input type="checkbox" name="zubehoer" value="Plattenwärmetauscher" data-module="kuehler"><span>Plattenwärmetauscher</span></label>
-              <label class="chip"><input type="checkbox" name="zubehoer" value="Luft-Ölkühler" data-module="kuehler"><span>Luft-Ölkühler</span></label>
-              <label class="chip"><input type="checkbox" name="zubehoer" value="Thermostatventil" data-module="kuehler"><span>Thermostatventil</span></label>
-              <label class="chip"><input type="checkbox" name="zubehoer" value="Filter mit Verschmutzungsanzeige" data-module="filter"><span>Filter mit Anzeige</span></label>
-              <label class="chip"><input type="checkbox" name="zubehoer" value="Ventilblock" data-module="ventile"><span>Ventilblock</span></label>
-              <label class="chip"><input type="checkbox" name="zubehoer" value="Niveauschalter" data-module="ventile"><span>Niveauschalter</span></label>
-              <label class="chip"><input type="checkbox" name="zubehoer" value="Druckschalter" data-module="ventile"><span>Druckschalter</span></label>
-              <label class="chip"><input type="checkbox" name="zubehoer" value="Lackierung in Wunsch-RAL"><span>Wunsch-RAL</span></label>
-            </div>
-          </fieldset>
-        </form>
-
-        <aside class="kit__summary" aria-labelledby="bom-title">
-          <div class="stack" aria-hidden="true">
-            <span class="mod mod--ventile">Ventile</span>
-            <span class="mod mod--filter">Filter</span>
-            <span class="mod mod--kuehler">Kühler</span>
-            <span class="mod mod--pumpe is-on">Pumpe + Motor</span>
-            <span class="mod mod--tank is-on">Tank</span>
-          </div>
-          <h3 id="bom-title">Ihre Stückliste</h3>
-          <dl class="bom" data-bom aria-live="polite"></dl>
-          <button class="btn btn--primary btn--block" type="button" data-kit-apply>In Anfrage übernehmen</button>
-          <p class="kit__note">Die Auswahl landet im Anfrageformular – dort ergänzen Sie Volumenstrom, Temperaturen und Druck.</p>
-        </aside>
-      </div>
+      <!-- include:kit -->
     </div>
   </section>
 
@@ -253,6 +167,10 @@
           <p>Ja: Pumpen aller genannten Bauarten, Filter, Niveau- und Druckschalter sowie Wärmetauscher.</p>
         </details>
         <details>
+          <summary>Was kostet ein Aggregat ungefähr?</summary>
+          <p>Das hängt vor allem von Leistung, Druck und Ausstattung ab – ein kleines Filteraggregat liegt in einer ganz anderen Größenordnung als ein Hydraulikaggregat mit 22 kW. Deshalb erhalten Sie zu jeder Anfrage ein konkretes Angebot. [[ERSETZEN: bestätigen, dass Angebote kostenlos und unverbindlich sind – oder einen Preisrahmen nennen]]</p>
+        </details>
+        <details>
           <summary>Wann habe ich ein Angebot?</summary>
           <p>[[ERSETZEN: typische Antwortzeit auf Anfragen]]</p>
         </details>
@@ -264,7 +182,8 @@
     <div class="wrap contact">
       <div class="contact__info">
         <p class="tag">Anfrage</p>
-        <h2 id="kontakt-title">Fast geschafft: Ergänzen Sie Ihre Betriebsdaten.</h2>
+        <h2 id="kontakt-title">Fast geschafft: Nur noch Ihre Kontaktdaten.</h2>
+        <!-- include:contact-person -->
         <ul class="contact__list">
           <li><span>Telefon</span><a href="tel:+4977329592105">07732 95921-05</a></li>
           <li><span>E-Mail</span><a href="mailto:mail@itb-hydraulik.com">mail@itb-hydraulik.com</a></li>
@@ -293,9 +212,9 @@
     <p>© <span data-year>2026</span> ITB</p>
   </div>
 </footer>
+<!-- include:actionbar -->
 <!-- footer:end -->
 
 <script src="assets/main.js" defer></script>
-<script src="assets/extra.js" defer></script>
 </body>
 </html>

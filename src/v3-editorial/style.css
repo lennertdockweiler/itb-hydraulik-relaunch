@@ -7,6 +7,14 @@
 @font-face { font-family: "Public Sans"; src: url("assets/fonts/public-sans.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
 
 :root {
+  /* Baukasten & gemeinsame Bausteine (components.css) */
+  --kit-surface: var(--paper); --kit-card: var(--cream); --kit-text: var(--ink); --kit-muted: var(--muted); --kit-line: var(--sage-line);
+  --kit-accent: var(--green); --kit-on-accent: #fff; --kit-focus: var(--rust); --kit-mono: var(--serif);
+  --kit-panel: var(--green); --kit-panel-text: var(--on-green); --kit-panel-muted: #A9C7B5; --kit-panel-title: #fff; --kit-panel-focus: #F0A58C;
+  --kit-radius: 0px; --kit-chip-radius: 3px;
+  --kit-mod-tank: #B7CBBF; --kit-mod-pumpe: #FFFFFF; --kit-mod-kuehler: var(--sage); --kit-mod-filter: #EAD9B0; --kit-mod-ventile: #F0A58C; --kit-mod-text: var(--ink);
+  --bar-bg: var(--ink); --bar-text: #fff; --bar-accent: #F0A58C; --bar-on-accent: var(--ink); --bar-focus: #F0A58C;
+
   --cream: #F6F3EC;      /* Hintergrund */
   --paper: #FFFDF8;      /* Fläche */
   --ink: #1A2A22;        /* Text */
@@ -245,6 +253,16 @@ a:hover { color: var(--rust); }
 .legal__eyebrow { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--rust); font-weight: 600; }
 .legal__note { padding: var(--s-2); background: var(--paper); border-left: 3px solid var(--rust); font-size: var(--fs-sm); }
 .legal ul { padding-left: 1.2rem; } .legal li { margin-bottom: var(--s-1); }
+
+/* ---------- Baukasten (Kapitel IV) ---------- */
+.kit__step legend { font-family: var(--serif); font-weight: 500; font-size: 1.25rem; }
+.kit__no { font-style: italic; }
+.kit__summary .kit__title { font-family: var(--serif); font-weight: 500; }
+.kit__summary .btn--primary { background: #F0A58C; border-color: #F0A58C; color: var(--ink); }
+.kit__summary .btn--primary:hover { background: #fff; border-color: #fff; color: var(--ink); }
+.kit__spare { background: var(--paper); border-color: var(--rust); }
+.person__name { font-family: var(--serif); font-weight: 500; font-size: 1.375rem; }
+.person__photo { font-family: var(--serif); font-style: italic; font-weight: 500; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

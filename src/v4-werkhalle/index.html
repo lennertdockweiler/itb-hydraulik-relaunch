@@ -34,6 +34,7 @@
     <button class="nav-toggle" type="button" data-nav-toggle aria-controls="hauptnavigation" aria-expanded="false">Menü</button>
     <nav id="hauptnavigation" class="site-nav" aria-label="Hauptnavigation" data-spy data-open="false">
       <ul>
+        <li><a href="./#baukasten">Baukasten</a></li>
         <li><a href="./#waermetauscher">Wärmetauscher</a></li>
         <li><a href="./#aggregate">Aggregate</a></li>
         <li><a href="./#ablauf">Ablauf</a></li>
@@ -63,6 +64,7 @@
         <div class="hero__cta">
           <a class="btn btn--primary" href="#kontakt">Auslegung anfragen</a>
           <a class="hero__tel" href="tel:+4977329592105">Sofort sprechen: 07732 95921-05</a>
+          <a class="hero__tel hero__tel--kit" href="#baukasten">Oder im Baukasten zusammenstellen →</a>
         </div>
       </div>
       <dl class="numbers">
@@ -173,10 +175,21 @@
     </div>
   </section>
 
-  <section id="ablauf" class="section" aria-labelledby="ablauf-title">
+  <section id="baukasten" class="section section--kit" aria-labelledby="kit-title">
     <div class="wrap">
       <div class="section__head">
-        <p class="kicker">03 — Ablauf</p>
+        <p class="kicker">03 — Baukasten</p>
+        <h2 id="kit-title">Bauen Sie Ihr Aggregat. Wir bauen es echt.</h2>
+        <p class="section__lead">Sechs Fragen, keine Fachkenntnis nötig. Ihre Auswahl landet mit einem Klick in der Anfrage.</p>
+      </div>
+      <!-- include:kit -->
+    </div>
+  </section>
+
+  <section id="ablauf" class="section section--raised" aria-labelledby="ablauf-title">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="kicker">04 — Ablauf</p>
         <h2 id="ablauf-title">Vier Schritte bis zum laufenden Aggregat.</h2>
       </div>
       <ol class="timeline">
@@ -188,10 +201,10 @@
     </div>
   </section>
 
-  <section id="fragen" class="section section--raised" aria-labelledby="faq-title">
+  <section id="fragen" class="section" aria-labelledby="faq-title">
     <div class="wrap faq-grid">
       <div class="section__head">
-        <p class="kicker">04 — FAQ</p>
+        <p class="kicker">05 — FAQ</p>
         <h2 id="faq-title">Klare Antworten vor der Anfrage.</h2>
       </div>
       <div class="faq">
@@ -208,6 +221,10 @@
           <p>Ja: Wärmetauscher, Pumpen, Filter, Niveau- und Druckschalter.</p>
         </details>
         <details>
+          <summary>Was kostet ein Aggregat ungefähr?</summary>
+          <p>Das hängt vor allem von Leistung, Druck und Ausstattung ab – ein kleines Filteraggregat liegt in einer ganz anderen Größenordnung als ein Hydraulikaggregat mit 22 kW. Deshalb erhalten Sie zu jeder Anfrage ein konkretes Angebot. [[ERSETZEN: bestätigen, dass Angebote kostenlos und unverbindlich sind – oder einen Preisrahmen nennen]]</p>
+        </details>
+        <details>
           <summary>Wie schnell kommt das Angebot?</summary>
           <p>[[ERSETZEN: typische Antwortzeit auf Anfragen]]</p>
         </details>
@@ -218,10 +235,11 @@
   <section id="kontakt" class="section section--contact" aria-labelledby="kontakt-title">
     <div class="wrap contact">
       <div class="contact__info">
-        <p class="kicker">05 — Anfrage</p>
+        <p class="kicker">06 — Anfrage</p>
         <h2 id="kontakt-title">Ihre Betriebsdaten. Unsere Auslegung.</h2>
         <p>Am schnellsten geht’s mit Zahlen: Medium, Volumenstrom, Temperaturen, Druck. Wir melden uns mit Rückfragen oder direkt mit einem Angebot.</p>
         <a class="contact__phone" href="tel:+4977329592105">07732 95921-05</a>
+        <!-- include:contact-person -->
         <p class="contact__lines">
           <a href="mailto:mail@itb-hydraulik.com">mail@itb-hydraulik.com</a><br>
           Fax 07732 95921-09<br>
@@ -250,6 +268,7 @@
     <p>© <span data-year>2026</span></p>
   </div>
 </footer>
+<!-- include:actionbar -->
 <!-- footer:end -->
 
 <script src="assets/main.js" defer></script>

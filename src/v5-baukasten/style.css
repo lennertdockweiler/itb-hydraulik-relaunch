@@ -9,6 +9,14 @@
 @font-face { font-family: "DM Mono"; src: url("assets/fonts/dm-mono-500.woff2") format("woff2"); font-weight: 500; font-display: swap; }
 
 :root {
+  /* Baukasten & gemeinsame Bausteine (components.css) */
+  --kit-surface: var(--bg); --kit-card: var(--white); --kit-text: var(--navy); --kit-muted: var(--text-2); --kit-line: var(--line);
+  --kit-accent: var(--navy); --kit-on-accent: #fff; --kit-focus: var(--signal); --kit-mono: var(--mono);
+  --kit-panel: var(--navy); --kit-panel-text: var(--on-dark); --kit-panel-muted: #A9BCD0; --kit-panel-title: #fff; --kit-panel-focus: var(--mint);
+  --kit-radius: 22px; --kit-chip-radius: 999px;
+  --kit-mod-tank: #A9C6E4; --kit-mod-pumpe: #FFFFFF; --kit-mod-kuehler: var(--mint); --kit-mod-filter: #FFF1C9; --kit-mod-ventile: #F4C9B5; --kit-mod-text: var(--navy);
+  --bar-bg: var(--navy); --bar-text: #fff; --bar-accent: var(--signal); --bar-on-accent: #fff; --bar-focus: var(--mint);
+
   --bg: #F4F6F8;          /* Hintergrund */
   --white: #FFFFFF;       /* Fläche */
   --grey: #E9EDF1;        /* Fläche abgesetzt */
@@ -130,44 +138,9 @@ a:hover { color: var(--signal); }
 .section__lead { font-size: var(--fs-md); color: var(--text-2); margin: var(--s-2) 0 0; }
 @media (min-width: 60em) { .section__head--row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-6); align-items: end; } .section__head--row .section__lead { margin: 0; } }
 
-/* Signature: Konfigurator */
+/* Signature: Konfigurator – Komponente aus components.css, hier nur Rahmen */
 .section--kit { background: var(--white); border-block: 1px solid var(--line); }
-.kit { display: grid; gap: var(--s-4); }
-.kit__form { display: grid; gap: var(--s-2); }
-.kit__step { margin: 0; padding: var(--s-3); border: 1px solid var(--line); border-radius: var(--r-xl); background: var(--bg); }
-.kit__step legend { display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap; padding: 0; font-weight: 800; font-size: 1.125rem; float: left; width: 100%; margin-bottom: var(--s-2); }
-.kit__step legend + * { clear: both; }
-.kit__no { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 8px; background: var(--navy); color: var(--mint); font: 500 var(--fs-sm) var(--mono); }
-.kit__multi { font: 400 var(--fs-xs) var(--mono); color: var(--text-2); }
-.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-.chip { position: relative; }
-.chip input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
-.chip span { display: inline-flex; align-items: center; gap: 0.4rem; min-height: 2.75rem; padding: 0.55rem 1rem; border: 2px solid var(--line); border-radius: var(--r-pill); background: var(--white); font-weight: 700; font-size: var(--fs-sm); transition: border-color var(--t), background var(--t), color var(--t); }
-.chip:hover span { border-color: var(--navy); }
-.chip input:checked + span { border-color: var(--navy); background: var(--navy); color: #fff; }
-.chip input:checked + span::before { content: ""; width: 0.5rem; height: 0.85rem; margin-right: 0.15rem; border: solid var(--mint); border-width: 0 2px 2px 0; transform: rotate(45deg) translateY(-2px); }
-.chip input:focus-visible + span { outline: 3px solid var(--signal); outline-offset: 2px; }
-.chip input:disabled + span { opacity: 0.45; cursor: not-allowed; }
-
-.kit__summary { align-self: start; padding: var(--s-4) var(--s-3); border-radius: var(--r-xl); background: var(--navy); color: var(--on-dark); }
-.kit__summary h3 { color: #fff; font-size: 1.375rem; margin: var(--s-4) 0 var(--s-2); }
-.stack { display: grid; gap: 6px; }
-.mod { display: flex; align-items: center; min-height: 2.6rem; padding: 0 1rem; border: 2px dashed #3A5878; border-radius: 10px; color: #8EA6C0; font: 500 var(--fs-xs) var(--mono); text-transform: uppercase; letter-spacing: 0.06em; transition: background var(--t), border-color var(--t), color var(--t), transform var(--t); }
-.mod.is-on { border-style: solid; color: var(--navy); }
-.mod--ventile.is-on { background: #F4C9B5; border-color: #F4C9B5; }
-.mod--filter.is-on { background: #FFF1C9; border-color: #FFF1C9; }
-.mod--kuehler.is-on { background: var(--mint); border-color: var(--mint); }
-.mod--pumpe.is-on { background: #fff; border-color: #fff; }
-.mod--tank.is-on { background: #A9C6E4; border-color: #A9C6E4; min-height: 3.6rem; }
-.mod--pumpe { margin-inline: 12%; } .mod--filter, .mod--kuehler { margin-inline: 6% 30%; } .mod--ventile { margin-inline: 30% 6%; }
-.mod--kuehler { margin-top: -0.2rem; }
-.bom { margin: 0 0 var(--s-4); display: grid; grid-template-columns: 6rem 1fr; gap: 0.5rem var(--s-2); font-size: var(--fs-sm); }
-.bom dt { font: 400 var(--fs-xs)/1.9 var(--mono); color: #A9BCD0; }
-.bom dd { margin: 0; color: #fff; font-weight: 600; }
-.kit__summary .btn--primary { box-shadow: 0 3px 0 #5E260F; }
-.kit__summary :focus-visible { outline-color: var(--mint); }
-.kit__note { margin: var(--s-2) 0 0; font-size: var(--fs-xs); color: #B8C8D8; }
-@media (min-width: 60em) { .kit { grid-template-columns: 1.6fr 1fr; gap: var(--s-5); } .kit__summary { position: sticky; top: 5.5rem; } }
+.kit__spare { background: var(--bg); }
 
 /* Wärmetauscher */
 .phe { display: grid; gap: 0.75rem; }
@@ -271,6 +244,7 @@ a:hover { color: var(--signal); }
 .legal__eyebrow { font: 500 var(--fs-xs) var(--mono); color: var(--teal); }
 .legal__note { padding: var(--s-2); border-radius: var(--r-md); background: #FFF4E0; font-size: var(--fs-sm); }
 .legal ul { padding-left: 1.2rem; } .legal li { margin-bottom: var(--s-1); }
+
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

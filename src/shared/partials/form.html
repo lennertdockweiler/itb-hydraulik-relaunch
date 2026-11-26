@@ -28,15 +28,20 @@
         <option value="kuehlmodul">Kühl- oder Filtermodul</option>
         <option value="motor-pumpe">Motor-Pumpen-Kombination</option>
         <option value="komponenten">Einzelkomponenten (Pumpen, Filter, Schalter)</option>
+        <option value="ersatz">Ersatz oder Nachbestellung</option>
         <option value="datenblatt">Datenblatt anfordern</option>
         <option value="sonstiges">Etwas anderes</option>
       </select>
     </div>
     <div class="field field--wide">
-      <label for="f-nachricht">Ihre Anwendung *</label>
-      <p class="field__hint" id="f-nachricht-hint">Je mehr Betriebsdaten, desto genauer die Auslegung: Medium, Volumenstrom (l/min), Ein- und Austrittstemperaturen, Leistung (kW), Betriebsdruck, Stückzahl.</p>
-      <textarea id="f-nachricht" name="nachricht" rows="6" required aria-describedby="f-nachricht-hint f-nachricht-error" data-missing="Beschreiben Sie kurz Ihre Anwendung – Stichworte genügen."></textarea>
+      <label for="f-nachricht">Was brauchen Sie? *</label>
+      <p class="field__hint" id="f-nachricht-hint">Ein paar Stichworte genügen. Wenn vorhanden, helfen uns: Flüssigkeit, Menge pro Minute, Temperaturen, Druck, Stückzahl – bei Ersatz die Angaben vom Typenschild.</p>
+      <textarea id="f-nachricht" name="nachricht" rows="6" required aria-describedby="f-nachricht-hint f-nachricht-error" data-missing="Schreiben Sie kurz, was Sie brauchen – Stichworte genügen."></textarea>
       <p class="field__error" id="f-nachricht-error"></p>
+    </div>
+    <div class="field field--wide field--check">
+      <input id="f-rueckruf" name="rueckruf" type="checkbox" value="ja">
+      <label for="f-rueckruf">Bitte rufen Sie mich zurück – ich bespreche das lieber am Telefon.</label>
     </div>
   </div>
   <div class="hp" aria-hidden="true">
@@ -45,6 +50,7 @@
   </div>
   <div class="inquiry__submit">
     <button class="btn btn--primary" type="submit">Auslegung &amp; Angebot anfragen</button>
+    <p class="inquiry__next"><strong>So geht es weiter:</strong> Wir lesen Ihre Anfrage persönlich und melden uns mit Rückfragen oder einem Angebot. Unverbindlich.</p>
     <p class="inquiry__privacy">Ihre Angaben nutzen wir nur zur Bearbeitung dieser Anfrage. Mehr dazu in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
   </div>
   <p class="form-status" data-status role="status" aria-live="polite"></p>

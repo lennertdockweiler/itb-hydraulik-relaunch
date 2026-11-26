@@ -11,6 +11,14 @@
 
 /* ---------- Design-Tokens ---------- */
 :root {
+  /* Baukasten & gemeinsame Bausteine (components.css) */
+  --kit-surface: var(--sheet); --kit-card: var(--paper); --kit-text: var(--ink); --kit-muted: var(--ink-2); --kit-line: var(--line);
+  --kit-accent: var(--green); --kit-on-accent: #fff; --kit-focus: var(--rust); --kit-mono: var(--font-mono);
+  --kit-panel: var(--ink); --kit-panel-text: #E8F1EC; --kit-panel-muted: #9DB5A9; --kit-panel-focus: var(--mint);
+  --kit-radius: 2px; --kit-chip-radius: 2px;
+  --kit-mod-tank: #A9D3C3; --kit-mod-pumpe: #FFFFFF; --kit-mod-kuehler: var(--mint); --kit-mod-filter: #F2E3B3; --kit-mod-ventile: #E9B9A8; --kit-mod-text: var(--ink);
+  --bar-bg: var(--ink); --bar-text: #fff; --bar-accent: var(--mint); --bar-on-accent: var(--ink); --bar-focus: var(--mint);
+
   --paper: #F3F7F5;      /* Hintergrund */
   --sheet: #FFFFFF;      /* Flächen */
   --ink: #10261B;        /* Text */
@@ -308,6 +316,20 @@ a:hover { color: var(--rust); }
 .legal ul { padding-left: 1.2rem; } .legal li { margin-bottom: var(--s-1); }
 
 /* ---------- Bewegung reduzieren ---------- */
+/* ---------- Baukasten (Blatt 05) ---------- */
+.section--kit { background-color: var(--paper); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 24px 24px; }
+.kit__step { border-color: var(--ink); }
+.kit__summary { border: 1px solid var(--ink); }
+.kit__summary .btn--primary { background: var(--mint); border-color: var(--mint); color: var(--ink); }
+.kit__summary .btn--primary:hover { background: #fff; border-color: #fff; color: var(--ink); }
+.kit__spare { background: var(--sheet); border-color: var(--rust); }
+.section--process { background: var(--sheet); }
+.process__no { background: var(--sheet); }
+.section--faq { background: var(--paper); }
+.hero__call { margin: var(--s-2) 0 0; font-size: var(--fs-sm); color: var(--ink-2); }
+.hero__call a { font-family: var(--font-mono); font-weight: 600; }
+.person__photo { border-radius: 2px; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }

@@ -8,6 +8,14 @@
 @font-face { font-family: "JetBrains Mono"; src: url("assets/fonts/jetbrains-mono.woff2") format("woff2"); font-weight: 100 800; font-display: swap; }
 
 :root {
+  /* Baukasten & gemeinsame Bausteine (components.css) */
+  --kit-surface: #FFFFFF; --kit-card: var(--aqua-soft); --kit-text: var(--text); --kit-muted: var(--text-2); --kit-line: var(--line);
+  --kit-accent: var(--navy); --kit-on-accent: #fff; --kit-focus: var(--hot); --kit-mono: var(--mono);
+  --kit-panel: var(--navy); --kit-panel-text: var(--text-inv); --kit-panel-muted: #8FB0C8; --kit-panel-title: #fff; --kit-panel-focus: var(--aqua);
+  --kit-radius: 14px; --kit-chip-radius: 999px;
+  --kit-mod-tank: var(--cold-inv); --kit-mod-pumpe: #FFFFFF; --kit-mod-kuehler: var(--aqua); --kit-mod-filter: #FFE3A8; --kit-mod-ventile: var(--hot-inv); --kit-mod-text: var(--navy);
+  --bar-bg: var(--navy); --bar-text: #fff; --bar-accent: var(--hot); --bar-on-accent: #fff; --bar-focus: var(--aqua);
+
   --navy: #0B2A4A;        /* dunkle Flächen, Text */
   --navy-2: #12385F;      /* dunkle Fläche, erhöht */
   --navy-line: #2A5278;
@@ -292,6 +300,12 @@ a:hover { color: var(--hot); }
 .legal__eyebrow { font: 500 var(--fs-xs) var(--mono); color: var(--cold); }
 .legal__note { padding: var(--s-2); border-radius: 10px; background: #FFF4E0; font-size: var(--fs-sm); }
 .legal ul { padding-left: 1.2rem; } .legal li { margin-bottom: var(--s-1); }
+
+/* ---------- Baukasten ---------- */
+.section--kit { background: var(--aqua-soft); }
+.kit__spare { background: #fff; border-color: var(--cold); }
+.contact__info .person__photo { background: var(--aqua); color: var(--navy); }
+.contact__info .person a { color: var(--aqua); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

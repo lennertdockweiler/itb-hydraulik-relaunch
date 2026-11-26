@@ -1,6 +1,6 @@
 /*
  * ITB – gemeinsame Interaktionen aller Varianten
- * 1. Mobile Navigation   2. Scrollspy (aktiver Menüpunkt)   3. Anfrageformular
+ * 1. Mobile Navigation  2. Scrollspy  3. Anfrageformular  4. Baukasten-Konfigurator
  */
 (() => {
   const d = document;
@@ -39,6 +39,13 @@
       });
     }, { rootMargin: "-40% 0px -55% 0px" });
     sections.forEach((_, section) => io.observe(section));
+  }
+
+  /* Mobile Aktionsleiste ausblenden, sobald der Kontaktbereich im Bild ist */
+  const actionbar = d.querySelector("[data-actionbar]");
+  const contact = d.getElementById("kontakt");
+  if (actionbar && contact && "IntersectionObserver" in window) {
+    new IntersectionObserver(([entry]) => actionbar.classList.toggle("is-hidden", entry.isIntersecting), { threshold: 0.05 }).observe(contact);
   }
 
   d.querySelectorAll("[data-year]").forEach((el) => { el.textContent = new Date().getFullYear(); });
@@ -113,14 +120,73 @@
     }
   });
 
-  /* Links mit data-topic / data-prefill füllen das Formular vor (z. B. "Datenblatt anfordern") */
+  /* Formular vorbefüllen – vorhandener Text bleibt erhalten, Neues wird angehängt */
   const prefill = (topic, text) => {
     if (topic) form.elements.anliegen.value = topic;
-    if (text) form.elements.nachricht.value = text;
+    if (!text) return;
+    const message = form.elements.nachricht;
+    const current = message.value.trim();
+    if (!current.includes(text)) message.value = current ? `${current}\n\n${text}` : text;
   };
   d.addEventListener("click", (e) => {
     const trigger = e.target.closest("[data-topic], [data-prefill]");
     if (trigger) prefill(trigger.dataset.topic, trigger.dataset.prefill);
   });
+
+  /* 4. Baukasten-Konfigurator ------------------------------------------- */
+  const kit = d.querySelector("[data-kit]");
+  if (kit) {
+    const bom = d.querySelector("[data-bom]");
+    const kitStatus = d.querySelector("[data-kit-status]");
+    const modules = d.querySelectorAll(".kit__mod");
+    const ROWS = [["aufgabe", "Aufgabe"], ["medium", "Medium"], ["pumpe", "Pumpe"], ["antrieb", "Strom"], ["tank", "Tank"], ["zubehoer", "Zubehör"]];
+
+    const selection = () => Object.fromEntries(ROWS.map(([name]) => [
+      name, [...kit.querySelectorAll(`[name="${name}"]:checked`)].map((i) => i.value),
+    ]));
+
+    const render = () => {
+      const sel = selection();
+      bom.replaceChildren(...ROWS.flatMap(([name, label]) => {
+        const dt = d.createElement("dt");
+        const dd = d.createElement("dd");
+        dt.textContent = label;
+        dd.textContent = sel[name].length ? sel[name].join(", ") : "–";
+        return [dt, dd];
+      }));
+      // Pumpe + Motor gehören immer dazu, alle anderen Module je nach Auswahl
+      const active = new Set(["pumpe"]);
+      kit.querySelectorAll("[data-module]:checked").forEach((i) => active.add(i.dataset.module));
+      modules.forEach((m) => m.classList.toggle("is-on", [...active].some((a) => m.classList.contains(`kit__mod--${a}`))));
+      kitStatus.textContent = "";
+      return sel;
+    };
+
+    const topicFor = (sel) => {
+      if (sel.tank[0]?.startsWith("ohne")) return "motor-pumpe";
+      if (sel.aufgabe.length && !sel.aufgabe.includes("Druckölversorgung")) return "kuehlmodul";
+      return "aggregat";
+    };
+
+    kit.addEventListener("change", render);
+    render();
+
+    d.querySelector("[data-kit-apply]").addEventListener("click", () => {
+      const sel = render();
+      const text = [
+        "Meine Auswahl aus dem ITB-Baukasten:",
+        ...ROWS.map(([name, label]) => `- ${label}: ${sel[name].length ? sel[name].join(", ") : "offen"}`),
+        "",
+        "Falls bekannt: Menge ___ l/min, Druck ___ bar, Temperatur ___ °C, Stückzahl ___",
+      ].join("\n");
+      form.elements.nachricht.value = form.elements.nachricht.value.replace(/Meine Auswahl aus dem ITB-Baukasten:[\s\S]*?Stückzahl ___/, "").trim();
+      prefill(topicFor(sel), text);
+      kitStatus.textContent = "Übernommen – weiter geht es im Anfrageformular.";
+      const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      d.getElementById("kontakt").scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+      form.elements.name.focus({ preventScroll: true });
+    });
+  }
+
   window.ITB = { prefill };
 })();

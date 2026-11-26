@@ -124,6 +124,7 @@ def build_variant(name: str) -> None:
         shutil.copy(SHARED / "fonts" / font, out / "assets" / "fonts" / font)
     shutil.copytree(SHARED / "img", out / "assets" / "img")
     shutil.copy(SHARED / "main.js", out / "assets" / "main.js")
+    shutil.copy(SHARED / "components.css", out / "assets" / "components.css")
     if (src / "extra.js").exists():
         shutil.copy(src / "extra.js", out / "assets" / "extra.js")
     for icon in ("favicon.svg", "favicon-32.png", "apple-touch-icon.png"):
@@ -144,6 +145,8 @@ def main() -> None:
     for name in VARIANTS:
         build_variant(name)
     shutil.copy(SRC / "overview.html", OUT / "index.html")
+    # GitHub Pages nutzt nur die 404.html im Wurzelordner
+    shutil.copy(SRC / "root-404.html", OUT / "404.html")
     (OUT / ".nojekyll").write_text("")
     print("✓ Übersicht docs/index.html")
 

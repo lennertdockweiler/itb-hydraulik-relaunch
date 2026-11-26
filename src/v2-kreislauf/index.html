@@ -33,6 +33,7 @@
     <button class="nav-toggle" type="button" data-nav-toggle aria-controls="hauptnavigation" aria-expanded="false">Menü</button>
     <nav id="hauptnavigation" class="site-nav" aria-label="Hauptnavigation" data-spy data-open="false">
       <ul>
+        <li><a href="./#baukasten">Baukasten</a></li>
         <li><a href="./#waermetauscher">Wärmetauscher</a></li>
         <li><a href="./#aggregate">Aggregate</a></li>
         <li><a href="./#ablauf">So läuft’s</a></li>
@@ -55,7 +56,7 @@
         <p class="hero__lead">Tank, Pumpe, Filter, Wärmetauscher, Ventile: ITB aus Radolfzell legt jedes Bauteil auf Ihre Betriebsdaten aus und liefert das Aggregat einbaufertig – montiert, geprüft und dokumentiert. Ab Stückzahl 1.</p>
         <div class="hero__actions">
           <a class="btn btn--hot" href="#kontakt">Kreislauf auslegen lassen</a>
-          <a class="btn btn--line" href="#aggregate">Gebaute Beispiele ansehen</a>
+          <a class="btn btn--line" href="#baukasten">Aggregat zusammenstellen</a>
         </div>
         <p class="hero__trust">Direkter Draht zur Technik: <a href="tel:+4977329592105">07732 95921-05</a></p>
       </div>
@@ -254,7 +255,18 @@
     </div>
   </section>
 
-  <section id="ablauf" class="section section--tint" aria-labelledby="ablauf-title">
+  <section id="baukasten" class="section section--kit" aria-labelledby="kit-title">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="eyebrow eyebrow--dark">Der ITB-Baukasten</p>
+        <h2 id="kit-title" class="section__title">Ihr Kreislauf in sechs Klicks.</h2>
+        <p class="section__lead">Keine Fachkenntnis nötig – wählen Sie, was Sie wissen. Den Rest legen wir aus.</p>
+      </div>
+      <!-- include:kit -->
+    </div>
+  </section>
+
+  <section id="ablauf" class="section" aria-labelledby="ablauf-title">
     <div class="wrap">
       <h2 id="ablauf-title" class="section__title">Vom Datenblatt zum laufenden Aggregat.</h2>
       <ol class="loop">
@@ -287,6 +299,10 @@
           <p>Jedes Aggregat wird mit der erforderlichen Dokumentation geliefert. [[ERSETZEN: konkreter Lieferumfang, z. B. Hydraulikplan, Stückliste, Prüfprotokoll, Betriebsanleitung]]</p>
         </details>
         <details>
+          <summary>Was kostet ein Aggregat ungefähr?</summary>
+          <p>Das hängt vor allem von Leistung, Druck und Ausstattung ab – ein kleines Filteraggregat liegt in einer ganz anderen Größenordnung als ein Hydraulikaggregat mit 22 kW. Deshalb erhalten Sie zu jeder Anfrage ein konkretes Angebot. [[ERSETZEN: bestätigen, dass Angebote kostenlos und unverbindlich sind – oder einen Preisrahmen nennen]]</p>
+        </details>
+        <details>
           <summary>Wie schnell erhalte ich ein Angebot?</summary>
           <p>[[ERSETZEN: typische Antwortzeit auf Anfragen]]</p>
         </details>
@@ -299,6 +315,7 @@
       <div class="contact__info">
         <p class="eyebrow">Anfrage</p>
         <h2 id="kontakt-title" class="section__title">Beschreiben Sie Ihren Kreislauf – wir legen ihn aus.</h2>
+        <!-- include:contact-person -->
         <ul class="contact__list">
           <li><span>Telefon</span><a href="tel:+4977329592105">07732 95921-05</a></li>
           <li><span>E-Mail</span><a href="mailto:mail@itb-hydraulik.com">mail@itb-hydraulik.com</a></li>
@@ -327,6 +344,7 @@
     <p>© <span data-year>2026</span> ITB</p>
   </div>
 </footer>
+<!-- include:actionbar -->
 <!-- footer:end -->
 
 <script src="assets/main.js" defer></script>

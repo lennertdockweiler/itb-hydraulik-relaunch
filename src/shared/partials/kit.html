@@ -1,0 +1,95 @@
+<div class="kit">
+  <form class="kit__form" data-kit aria-describedby="kit-hint">
+    <p id="kit-hint" class="kit__intro">Klicken Sie an, was passt – Ihre Auswahl erscheint als Stückliste. Unsicher? Lassen Sie „bitte auslegen“ stehen, das ist eine ganz normale Antwort.</p>
+
+    <fieldset class="kit__step">
+      <legend><span class="kit__no" aria-hidden="true">1</span> Was soll das Aggregat leisten? <span class="kit__multi">mehrere möglich</span></legend>
+      <div class="kit__chips">
+        <label class="kit__chip"><input type="checkbox" name="aufgabe" value="Druckölversorgung" data-module="pumpe"><span>Druck erzeugen</span></label>
+        <label class="kit__chip"><input type="checkbox" name="aufgabe" value="Kühlen" data-module="kuehler"><span>Kühlen</span></label>
+        <label class="kit__chip"><input type="checkbox" name="aufgabe" value="Filtern" data-module="filter"><span>Filtern</span></label>
+        <label class="kit__chip"><input type="checkbox" name="aufgabe" value="Schmieren" data-module="pumpe"><span>Schmieren</span></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="kit__step">
+      <legend><span class="kit__no" aria-hidden="true">2</span> Welche Flüssigkeit läuft durch?</legend>
+      <div class="kit__chips">
+        <label class="kit__chip"><input type="radio" name="medium" value="Hydrauliköl" checked><span>Hydrauliköl</span></label>
+        <label class="kit__chip"><input type="radio" name="medium" value="Getriebeöl"><span>Getriebeöl</span></label>
+        <label class="kit__chip"><input type="radio" name="medium" value="Schmieröl"><span>Schmieröl</span></label>
+        <label class="kit__chip"><input type="radio" name="medium" value="Wasser-Glykol"><span>Wasser-Glykol</span></label>
+        <label class="kit__chip"><input type="radio" name="medium" value="Emulsion"><span>Emulsion</span></label>
+        <label class="kit__chip"><input type="radio" name="medium" value="noch offen"><span>weiß ich nicht</span></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="kit__step">
+      <legend><span class="kit__no" aria-hidden="true">3</span> Pumpe</legend>
+      <p class="kit__help">Die Pumpe bestimmt Druck und Fördermenge.</p>
+      <div class="kit__chips">
+        <label class="kit__chip"><input type="radio" name="pumpe" value="bitte auslegen" checked><span>bitte auslegen</span></label>
+        <label class="kit__chip"><input type="radio" name="pumpe" value="Zahnradpumpe"><span>Zahnrad</span></label>
+        <label class="kit__chip"><input type="radio" name="pumpe" value="Axialkolbenpumpe"><span>Axialkolben</span></label>
+        <label class="kit__chip"><input type="radio" name="pumpe" value="Flügelzellenpumpe"><span>Flügelzelle</span></label>
+        <label class="kit__chip"><input type="radio" name="pumpe" value="Schraubenspindelpumpe"><span>Schraubenspindel</span></label>
+        <label class="kit__chip"><input type="radio" name="pumpe" value="Kreiselpumpe"><span>Kreisel</span></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="kit__step">
+      <legend><span class="kit__no" aria-hidden="true">4</span> Stromanschluss</legend>
+      <div class="kit__chips">
+        <label class="kit__chip"><input type="radio" name="antrieb" value="bitte auslegen" checked><span>bitte auslegen</span></label>
+        <label class="kit__chip"><input type="radio" name="antrieb" value="230 V Wechselstrom"><span>230 V Steckdose</span></label>
+        <label class="kit__chip"><input type="radio" name="antrieb" value="400 V Drehstrom"><span>400 V Drehstrom</span></label>
+        <label class="kit__chip"><input type="radio" name="antrieb" value="12/24/48 V DC, bürstenlos"><span>12–48 V Gleichstrom</span></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="kit__step">
+      <legend><span class="kit__no" aria-hidden="true">5</span> Tankgröße</legend>
+      <div class="kit__chips">
+        <label class="kit__chip"><input type="radio" name="tank" value="bis 10 l" data-module="tank"><span>bis 10 l</span></label>
+        <label class="kit__chip"><input type="radio" name="tank" value="10–50 l" data-module="tank" checked><span>10–50 l</span></label>
+        <label class="kit__chip"><input type="radio" name="tank" value="50–100 l" data-module="tank"><span>50–100 l</span></label>
+        <label class="kit__chip"><input type="radio" name="tank" value="über 100 l" data-module="tank"><span>über 100 l</span></label>
+        <label class="kit__chip"><input type="radio" name="tank" value="ohne Tank (Motor-Pumpen-Kombination)"><span>ohne Tank</span></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="kit__step">
+      <legend><span class="kit__no" aria-hidden="true">6</span> Zubehör <span class="kit__multi">optional, mehrere möglich</span></legend>
+      <div class="kit__chips">
+        <label class="kit__chip"><input type="checkbox" name="zubehoer" value="Plattenwärmetauscher" data-module="kuehler"><span>Plattenwärmetauscher</span></label>
+        <label class="kit__chip"><input type="checkbox" name="zubehoer" value="Luft-Ölkühler" data-module="kuehler"><span>Luft-Ölkühler</span></label>
+        <label class="kit__chip"><input type="checkbox" name="zubehoer" value="Thermostatventil" data-module="kuehler"><span>Thermostatventil</span></label>
+        <label class="kit__chip"><input type="checkbox" name="zubehoer" value="Filter mit Verschmutzungsanzeige" data-module="filter"><span>Filter mit Anzeige</span></label>
+        <label class="kit__chip"><input type="checkbox" name="zubehoer" value="Ventilblock" data-module="ventile"><span>Ventilblock</span></label>
+        <label class="kit__chip"><input type="checkbox" name="zubehoer" value="Niveauschalter" data-module="ventile"><span>Niveauschalter</span></label>
+        <label class="kit__chip"><input type="checkbox" name="zubehoer" value="Druckschalter" data-module="ventile"><span>Druckschalter</span></label>
+        <label class="kit__chip"><input type="checkbox" name="zubehoer" value="Lackierung in Wunsch-RAL"><span>Wunschfarbe (RAL)</span></label>
+      </div>
+    </fieldset>
+  </form>
+
+  <aside class="kit__summary" aria-labelledby="bom-title">
+    <div class="kit__stack" aria-hidden="true">
+      <span class="kit__mod kit__mod--ventile">Ventile &amp; Schalter</span>
+      <span class="kit__mod kit__mod--filter">Filter</span>
+      <span class="kit__mod kit__mod--kuehler">Kühler</span>
+      <span class="kit__mod kit__mod--pumpe is-on">Pumpe + Motor</span>
+      <span class="kit__mod kit__mod--tank is-on">Tank</span>
+    </div>
+    <h3 id="bom-title" class="kit__title">Ihre Stückliste</h3>
+    <dl class="kit__bom" data-bom></dl>
+    <button class="btn btn--primary kit__apply" type="button" data-kit-apply>Auswahl in Anfrage übernehmen</button>
+    <p class="kit__note">Unverbindlich. Im Formular ergänzen Sie nur noch Ihre Kontaktdaten.</p>
+    <p class="kit__status" data-kit-status role="status" aria-live="polite"></p>
+  </aside>
+
+  <div class="kit__spare">
+    <p class="kit__spare-title">Sie brauchen Ersatz für ein vorhandenes Gerät?</p>
+    <p>Fotografieren Sie das Typenschild und schicken Sie es an <a href="mailto:mail@itb-hydraulik.com?subject=Ersatz%20%2F%20Nachbestellung">mail@itb-hydraulik.com</a> – oder wählen Sie im Formular „Ersatz oder Nachbestellung“.</p>
+  </div>
+</div>

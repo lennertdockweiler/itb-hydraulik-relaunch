@@ -8,6 +8,14 @@
 @font-face { font-family: "Work Sans"; src: url("assets/fonts/work-sans.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
 
 :root {
+  /* Baukasten & gemeinsame Bausteine (components.css) */
+  --kit-surface: var(--surface); --kit-card: var(--bg); --kit-text: var(--text); --kit-muted: var(--muted); --kit-line: #3A5A4E;
+  --kit-accent: var(--mint); --kit-on-accent: var(--bg); --kit-focus: var(--mint); --kit-mono: var(--display);
+  --kit-panel: var(--surface-2); --kit-panel-text: var(--text); --kit-panel-muted: #9FB6AC; --kit-panel-focus: var(--mint);
+  --kit-radius: 10px; --kit-chip-radius: 2px;
+  --kit-mod-tank: var(--mint); --kit-mod-pumpe: #E8F1ED; --kit-mod-kuehler: #BFEFE2; --kit-mod-filter: #F3D9A0; --kit-mod-ventile: var(--copper-strong); --kit-mod-text: var(--bg);
+  --bar-bg: var(--surface-2); --bar-text: var(--text); --bar-accent: var(--copper); --bar-on-accent: var(--on-copper); --bar-focus: var(--mint); --bar-line: var(--line);
+
   --bg: #0C1613;          /* Hintergrund */
   --surface: #13221D;     /* Fläche */
   --surface-2: #1A2E27;   /* Fläche erhöht */
@@ -244,6 +252,18 @@ a:hover { color: var(--copper-strong); }
 .legal__eyebrow { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.14em; color: var(--mint); font-weight: 600; }
 .legal__note { padding: var(--s-2); background: var(--surface-2); border-left: 4px solid var(--copper); font-size: var(--fs-sm); }
 .legal ul { padding-left: 1.2rem; } .legal li { margin-bottom: var(--s-1); }
+
+/* ---------- Baukasten (03) ---------- */
+.kit__step legend { font: 800 1.5rem/1.1 var(--display); text-transform: uppercase; letter-spacing: 0.02em; }
+.kit__no { font-size: 1.1rem; }
+.kit__summary { border: 1px solid var(--line); }
+.kit__title { font-size: 2rem !important; }
+.kit__mod { font-size: 0.95rem; letter-spacing: 0.08em; }
+.kit__bom dt { font-size: 0.95rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.kit__spare { border-color: var(--copper); color: var(--muted); }
+.kit__spare-title { color: var(--text); }
+.hero__tel--kit { color: var(--mint); }
+.person__photo { border-radius: var(--r-sm); font-size: 1.6rem; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

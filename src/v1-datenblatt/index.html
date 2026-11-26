@@ -36,6 +36,7 @@
     </button>
     <nav id="hauptnavigation" class="site-nav" aria-label="Hauptnavigation" data-spy data-open="false">
       <ul>
+        <li><a href="./#baukasten">Baukasten</a></li>
         <li><a href="./#waermetauscher">Wärmetauscher</a></li>
         <li><a href="./#aggregate">Aggregate</a></li>
         <li><a href="./#ablauf">Ablauf</a></li>
@@ -58,8 +59,9 @@
         <p class="hero__lead">Sie nennen Medium, Volumenstrom und Temperaturen. Wir wählen den passenden Edelstahl-Plattenwärmetauscher oder bauen das komplette Aggregat – montiert, geprüft, dokumentiert. Auch als Einzelstück.</p>
         <div class="hero__actions">
           <a class="btn btn--primary" href="#kontakt">Auslegung anfragen</a>
-          <a class="btn btn--ghost" href="tel:+4977329592105"><span class="mono">07732 95921-05</span></a>
+          <a class="btn btn--ghost" href="#baukasten">Im Baukasten zusammenstellen</a>
         </div>
+        <p class="hero__call">Lieber sprechen? <a href="tel:+4977329592105">07732 95921-05</a></p>
         <ul class="facts" aria-label="Eckdaten">
           <li><strong>ab 1 Stück</strong><span>dank Baukastensystem</span></li>
           <li><strong>bis 55 bar</strong><span>Betriebsdruck, Typ GWH</span></li>
@@ -277,11 +279,23 @@
     </div>
   </section>
 
-  <!-- Blatt 05 · Ablauf -->
+  <!-- Blatt 05 · Baukasten -->
+  <section id="baukasten" class="section section--kit" aria-labelledby="kit-title">
+    <div class="wrap">
+      <header class="sheet-head">
+        <p class="sheet-label"><span>Blatt 05</span><span>Baukasten</span></p>
+        <h2 id="kit-title">Stellen Sie Ihr Aggregat selbst zusammen – in einer Minute.</h2>
+        <p class="sheet-head__lead">Sechs Fragen, keine Fachkenntnis nötig. Ihre Auswahl übernehmen wir mit einem Klick in die Anfrage.</p>
+      </header>
+      <!-- include:kit -->
+    </div>
+  </section>
+
+  <!-- Blatt 06 · Ablauf -->
   <section id="ablauf" class="section section--process" aria-labelledby="ablauf-title">
     <div class="wrap">
       <header class="sheet-head">
-        <p class="sheet-label"><span>Blatt 05</span><span>Ablauf</span></p>
+        <p class="sheet-label"><span>Blatt 06</span><span>Ablauf</span></p>
         <h2 id="ablauf-title">Von Ihren Betriebsdaten zum geprüften Aggregat in vier Schritten.</h2>
       </header>
       <ol class="process">
@@ -293,11 +307,11 @@
     </div>
   </section>
 
-  <!-- Blatt 06 · Fragen -->
+  <!-- Blatt 07 · Fragen -->
   <section id="fragen" class="section section--faq" aria-labelledby="faq-title">
     <div class="wrap faq-layout">
       <header class="sheet-head">
-        <p class="sheet-label"><span>Blatt 06</span><span>Häufige Fragen</span></p>
+        <p class="sheet-label"><span>Blatt 07</span><span>Häufige Fragen</span></p>
         <h2 id="faq-title">Was Konstrukteure und Einkäufer vor der Anfrage wissen wollen.</h2>
       </header>
       <div class="faq">
@@ -318,6 +332,10 @@
           <p>Ja, den Typ XCR: nickelgelötet aus dem Werkstoff 1.4547 (SMO 254), beständig gegen chloridhaltiges Wasser.</p>
         </details>
         <details>
+          <summary>Was kostet ein Aggregat ungefähr?</summary>
+          <p>Das hängt vor allem von Leistung, Druck und Ausstattung ab – ein kleines Filteraggregat liegt in einer ganz anderen Größenordnung als ein Hydraulikaggregat mit 22 kW. Deshalb erhalten Sie zu jeder Anfrage ein konkretes Angebot. [[ERSETZEN: bestätigen, dass Angebote kostenlos und unverbindlich sind – oder einen Preisrahmen nennen]]</p>
+        </details>
+        <details>
           <summary>Wie schnell bekomme ich ein Angebot?</summary>
           <p>[[ERSETZEN: typische Antwortzeit auf Anfragen, z. B. „in der Regel innerhalb von X Werktagen“]]</p>
         </details>
@@ -325,13 +343,14 @@
     </div>
   </section>
 
-  <!-- Blatt 07 · Kontakt -->
+  <!-- Blatt 08 · Kontakt -->
   <section id="kontakt" class="section section--contact" aria-labelledby="kontakt-title">
     <div class="wrap contact">
       <div class="contact__info">
-        <p class="sheet-label"><span>Blatt 07</span><span>Anfrage</span></p>
+        <p class="sheet-label"><span>Blatt 08</span><span>Anfrage</span></p>
         <h2 id="kontakt-title">Schicken Sie uns Ihre Betriebsdaten – wir legen aus.</h2>
         <p>Lieber direkt sprechen? Rufen Sie an, gerne auch mit einer Skizze oder einem Datenblatt Ihrer Anlage zur Hand.</p>
+        <!-- include:contact-person -->
         <table class="titleblock titleblock--contact">
           <caption class="visually-hidden">Kontaktdaten</caption>
           <tbody>
@@ -363,6 +382,7 @@
     <p class="site-footer__copy">© <span data-year>2026</span> ITB Industrie Technik Briechle</p>
   </div>
 </footer>
+<!-- include:actionbar -->
 <!-- footer:end -->
 
 <script src="assets/main.js" defer></script>
