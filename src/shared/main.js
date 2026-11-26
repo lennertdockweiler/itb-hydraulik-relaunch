@@ -41,11 +41,20 @@
     sections.forEach((_, section) => io.observe(section));
   }
 
-  /* Mobile Aktionsleiste ausblenden, sobald der Kontaktbereich im Bild ist */
+  /* Mobile Aktionsleiste: nur zeigen, wenn weder der Haupt-Button oben noch der
+     Kontaktbereich im Bild ist – sonst stünden dieselben Aktionen doppelt da. */
   const actionbar = d.querySelector("[data-actionbar]");
-  const contact = d.getElementById("kontakt");
-  if (actionbar && contact && "IntersectionObserver" in window) {
-    new IntersectionObserver(([entry]) => actionbar.classList.toggle("is-hidden", entry.isIntersecting), { threshold: 0.05 }).observe(contact);
+  if (actionbar && "IntersectionObserver" in window) {
+    const seen = { hero: false, contact: false };
+    const update = () => actionbar.classList.toggle("is-hidden", seen.hero || seen.contact);
+    const watch = (el, key) => {
+      if (!el) return;
+      seen[key] = true; // bis zur ersten Messung ausgeblendet, damit die Leiste beim Laden nicht aufblitzt
+      new IntersectionObserver(([entry]) => { seen[key] = entry.isIntersecting; update(); }, { threshold: 0.05 }).observe(el);
+    };
+    watch(d.querySelector("[data-hero-cta], .pp-hero .btn--primary"), "hero");
+    watch(d.getElementById("kontakt"), "contact");
+    update();
   }
 
   d.querySelectorAll("[data-year]").forEach((el) => { el.textContent = new Date().getFullYear(); });
